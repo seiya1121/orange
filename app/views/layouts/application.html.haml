@@ -6,35 +6,136 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body{ 'data-no-turbolink' => true }
-    = link_to Settings.app_name, :root
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %a.navbar-brand{ href: root_path }
+            = Settings.app_name
+          %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li.dropdown
+              %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Themes
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "themes"}
+                %li
+                  %a{:href => "../default/"} Default
+                %li.divider
+                %li
+                  %a{:href => "../cerulean/"} Cerulean
+                %li
+                  %a{:href => "../cosmo/"} Cosmo
+                %li
+                  %a{:href => "../cyborg/"} Cyborg
+                %li
+                  %a{:href => "../darkly/"} Darkly
+                %li
+                  %a{:href => "../flatly/"} Flatly
+                %li
+                  %a{:href => "../journal/"} Journal
+                %li
+                  %a{:href => "../lumen/"} Lumen
+                %li
+                  %a{:href => "../paper/"} Paper
+                %li
+                  %a{:href => "../readable/"} Readable
+                %li
+                  %a{:href => "../sandstone/"} Sandstone
+                %li
+                  %a{:href => "../simplex/"} Simplex
+                %li
+                  %a{:href => "../slate/"} Slate
+                %li
+                  %a{:href => "../spacelab/"} Spacelab
+                %li
+                  %a{:href => "../superhero/"} Superhero
+                %li
+                  %a{:href => "../united/"} United
+                %li
+                  %a{:href => "../yeti/"} Yeti
+            %li
+              %a{:href => "../help/"} Help
+            %li
+              %a{:href => "http://news.bootswatch.com"} Blog
+            %li.dropdown
+              %a#download.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Download
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "download"}
+                %li
+                  %a{:href => "./bootstrap.min.css"} bootstrap.min.css
+                %li
+                  %a{:href => "./bootstrap.css"} bootstrap.css
+                %li.divider
+                %li
+                  %a{:href => "./variables.less"} variables.less
+                %li
+                  %a{:href => "./bootswatch.less"} bootswatch.less
+                %li.divider
+                %li
+                  %a{:href => "./_variables.scss"} _variables.scss
+                %li
+                  %a{:href => "./_bootswatch.scss"} _bootswatch.scss
+          %ul.nav.navbar-nav.navbar-right
+            -# %li
+            -#   %a{:href => "http://builtwithbootstrap.com/", :target => "_blank"} Built With Bootstrap
+            -# %li
+            -#   %a{:href => "https://wrapbootstrap.com/?ref=bsw", :target => "_blank"} WrapBootstrap
+            %li= link_to "Logout", logout_path
 
-    - if signed_in?
-      = render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" }
-      = link_to "Top",    root_path
-      = link_to "Logout", logout_path
-    - else
-      Login:
-      = link_to 'Twitter',  '/auth/twitter'
-      = link_to 'Facebook', '/auth/facebook'
-      = link_to 'GitHub',   '/auth/github'
+    -# .navbar.navbar-default.navbar-fixed-top
+    -#   .container
+    -#     .navbar-header
+    -#       %a.navbar-brand{:href => "../"} Bootswatch
 
-    = simple_format(flash[:notice], style: "color: green;") if flash[:notice].present?
-    = simple_format(flash[:alert], style: "color: red;")    if flash[:alert].present?
+    -# .container
+    -# .page-header
+    -# .row
+    -#   .col-lg-8.col-md-7.col-sm-6
+    -#     %h1 United
+    -# #banner.page-header
+    -#   .row
+    -#     .col-lg-8.col-md-7.col-sm-6
+    -#       %h1 United
+    .container
+      -# #banner.page-header
+      .page-header
+        .row
+          .col-lg-8.col-md-7.col-sm-6
+            %h1= link_to Settings.app_name, :root
+        -#   = link_to Settings.app_name, :root
 
-    = yield
+        -#   - if signed_in?
+        -#     = render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" }
+        -#     = link_to "Top",    root_path
+        -#     = link_to "Logout", logout_path
+        -#   - else
+        -#     Login:
+        -#     -# = link_to 'Twitter',  '/auth/twitter'
+        -#     = link_to 'Facebook', '/auth/facebook'
+        -#     -# = link_to 'GitHub',   '/auth/github'
+
+          = simple_format(flash[:notice], style: "color: green;") if flash[:notice].present?
+          = simple_format(flash[:alert], style: "color: red;")    if flash[:alert].present?
+
+          = yield
 
     %br/
     %br/
 
-    %center
-      Developed by
-      = succeed "," do
-        %a{ href: "https://twitter.com/#{Settings.programmer_twitter_id}/", target: '_blank' }
-          = "@#{Settings.programmer_twitter_id}"
-      Designed by
-      = succeed "," do
-        %a{ href: "https://twitter.com/#{Settings.designer_twitter_id}/", target: '_blank' }
-          = "@#{Settings.designer_twitter_id}"
-      Licence by
-      %a{ href: 'https://creativecommons.org/licenses/by-nc-sa/2.1/jp/', target: '_blank' }
-        CC BY-NC-SA 2.1
+    -# %center
+    -#   Developed by
+    -#   = succeed "," do
+    -#     %a{ href: "https://twitter.com/#{Settings.programmer_twitter_id}/", target: '_blank' }
+    -#       = "@#{Settings.programmer_twitter_id}"
+    -#   Designed by
+    -#   = succeed "," do
+    -#     %a{ href: "https://twitter.com/#{Settings.designer_twitter_id}/", target: '_blank' }
+    -#       = "@#{Settings.designer_twitter_id}"
+    -#   Licence by
+    -#   %a{ href: 'https://creativecommons.org/licenses/by-nc-sa/2.1/jp/', target: '_blank' }
+    -#     CC BY-NC-SA 2.1
