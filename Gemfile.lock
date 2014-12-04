@@ -1,0 +1,331 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    action_args (1.4.0)
+    actionmailer (4.1.8)
+      actionpack (= 4.1.8)
+      actionview (= 4.1.8)
+      mail (~> 2.5, >= 2.5.4)
+    actionpack (4.1.8)
+      actionview (= 4.1.8)
+      activesupport (= 4.1.8)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    actionview (4.1.8)
+      activesupport (= 4.1.8)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    activemodel (4.1.8)
+      activesupport (= 4.1.8)
+      builder (~> 3.1)
+    activerecord (4.1.8)
+      activemodel (= 4.1.8)
+      activesupport (= 4.1.8)
+      arel (~> 5.0.0)
+    activesupport (4.1.8)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    anbt-sql-formatter (0.0.2)
+    arel (5.0.1.20140414130214)
+    awesome_print (1.2.0)
+    better_errors (2.0.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    builder (3.2.2)
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
+    coderay (1.1.0)
+    coffee-rails (4.0.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+    coffee-script (2.3.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.8.0)
+    colorize_unpermitted_parameters (0.0.2)
+      term-ansicolor
+    debug_inspector (0.0.2)
+    diff-lcs (1.2.5)
+    domain_name (0.5.22)
+      unf (>= 0.0.5, < 1.0.0)
+    erb2haml (0.1.5)
+      html2haml
+    erubis (2.7.0)
+    everywhere (2.0.0)
+      activerecord
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
+    execjs (2.2.2)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    haml (4.1.0.beta.1)
+      tilt
+    haml-rails (0.5.3)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 3.1, < 5.0)
+      railties (>= 4.0.1)
+    hashie (3.3.2)
+    heroku-deflater (0.5.3)
+      rack (>= 1.4.5)
+    hike (1.2.3)
+    hpricot (0.8.6)
+    html2haml (1.0.1)
+      erubis (~> 2.7.0)
+      haml (>= 4.0.0.rc.1)
+      hpricot (~> 0.8.6)
+      ruby_parser (~> 3.1.1)
+    html5_validators (1.1.2)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    i18n (0.6.11)
+    i18n_generators (1.2.1)
+      mechanize
+      rails (>= 3.0.0)
+    iso8601 (0.8.2)
+    jbuilder (2.2.5)
+      activesupport (>= 3.0.0, < 5)
+      multi_json (~> 1.2)
+    jquery-rails (3.1.2)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    json (1.8.1)
+    jwt (1.2.0)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    mail (2.6.3)
+      mime-types (>= 1.16, < 3)
+    mechanize (2.7.3)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (~> 2.0)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.4)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
+    method_source (0.8.2)
+    mime-types (2.4.3)
+    mini_portile (0.6.1)
+    minimum-omniauth-scaffold (0.2.0)
+      awesome_print
+      omniauth-facebook
+      omniauth-github
+      omniauth-twitter
+      rails_config
+      tapp
+    minitest (5.4.3)
+    multi_json (1.10.1)
+    multi_xml (0.5.5)
+    multipart-post (2.0.0)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
+    newrelic_rpm (3.9.8.273)
+    nokogiri (1.6.5)
+      mini_portile (~> 0.6.0)
+    ntlm-http (0.1.1)
+    oauth (0.4.7)
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-facebook (2.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-oauth2 (1.2.0)
+      faraday (>= 0.8, < 0.10)
+      multi_json (~> 1.3)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
+    omniauth-twitter (1.1.0)
+      multi_json (~> 1.3)
+      omniauth-oauth (~> 1.0)
+    opal (0.6.3)
+      source_map
+      sprockets
+    opal-activesupport (0.0.5)
+      opal
+    opal-jquery (0.2.0)
+      opal (>= 0.5.0, < 1.0.0)
+    opal-rails (0.6.3)
+      jquery-rails
+      opal (~> 0.6.0)
+      opal-activesupport (>= 0.0.5)
+      opal-jquery (>= 0.1.0)
+      opal-rspec (~> 0.3.0.beta1)
+      rails (>= 3.2.13, < 5.0)
+    opal-rspec (0.3.0.beta3)
+      opal (>= 0.6.0, < 1.0.0)
+    pg (0.17.1)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
+    puma (2.10.2)
+      rack (>= 1.1, < 2.0)
+    quiet_assets (1.0.3)
+      railties (>= 3.1, < 5.0)
+    rack (1.5.2)
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rails (4.1.8)
+      actionmailer (= 4.1.8)
+      actionpack (= 4.1.8)
+      actionview (= 4.1.8)
+      activemodel (= 4.1.8)
+      activerecord (= 4.1.8)
+      activesupport (= 4.1.8)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.1.8)
+      sprockets-rails (~> 2.0)
+    rails-flog-disable-sql-format (1.1.2)
+      anbt-sql-formatter
+      awesome_print
+      rails (>= 3.2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_config (0.4.2)
+      activesupport (>= 3.0)
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
+    railties (4.1.8)
+      actionpack (= 4.1.8)
+      activesupport (= 4.1.8)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+    rake (10.4.2)
+    rdoc (4.1.2)
+      json (~> 1.4)
+    redcarpet (3.2.1)
+    rspec-core (3.1.7)
+      rspec-support (~> 3.1.0)
+    rspec-expectations (3.1.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.1.0)
+    rspec-mocks (3.1.3)
+      rspec-support (~> 3.1.0)
+    rspec-rails (3.1.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+      rspec-support (~> 3.1.0)
+    rspec-support (3.1.2)
+    ruby-duration (3.2.0)
+      activesupport (>= 3.0.0)
+      i18n
+      iso8601
+    ruby_parser (3.1.3)
+      sexp_processor (~> 4.1)
+    sass (3.2.19)
+    sass-rails (4.0.5)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2.2)
+      sprockets (~> 2.8, < 3.0)
+      sprockets-rails (~> 2.0)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
+    sexp_processor (4.4.4)
+    slop (3.6.0)
+    source_map (3.0.1)
+      json
+    spring (1.2.0)
+    sprockets (2.12.3)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.2.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.10)
+    tapp (1.4.1)
+      thor
+    term-ansicolor (1.3.0)
+      tins (~> 1.0)
+    thor (0.19.1)
+    thread_safe (0.3.4)
+    tilt (1.4.1)
+    tins (1.3.3)
+    turbolinks (2.5.2)
+      coffee-rails
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    uglifier (2.5.3)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.6)
+    uniform_notifier (1.6.2)
+    webrobots (0.1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  action_args
+  awesome_print
+  better_errors
+  binding_of_caller
+  bullet
+  coderay
+  coffee-rails (~> 4.0.0)
+  colorize_unpermitted_parameters
+  erb2haml
+  everywhere
+  exception_notification
+  haml-rails
+  heroku-deflater
+  html5_validators
+  i18n_generators
+  jbuilder (~> 2.0)
+  jquery-rails
+  kaminari
+  minimum-omniauth-scaffold
+  newrelic_rpm
+  opal-rails
+  pg
+  pry-rails
+  puma
+  quiet_assets
+  rails (= 4.1.8)
+  rails-flog-disable-sql-format
+  rails_12factor
+  rails_config
+  redcarpet
+  rspec-rails
+  ruby-duration
+  sass-rails (~> 4.0.3)
+  sdoc (~> 0.4.0)
+  spring
+  sqlite3
+  tapp
+  turbolinks
+  uglifier (>= 1.3.0)
