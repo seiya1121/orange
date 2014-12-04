@@ -56,6 +56,7 @@ gem "everywhere"
 gem "opal-rails"
 gem "redcarpet"
 gem "coderay"
+
 group :development do
   gem "pry-rails"
   gem "better_errors"
