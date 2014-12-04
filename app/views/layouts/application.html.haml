@@ -85,29 +85,15 @@
             -#   %a{:href => "http://builtwithbootstrap.com/", :target => "_blank"} Built With Bootstrap
             -# %li
             -#   %a{:href => "https://wrapbootstrap.com/?ref=bsw", :target => "_blank"} WrapBootstrap
-            %li= link_to "Logout", logout_path
-
-    -# .navbar.navbar-default.navbar-fixed-top
-    -#   .container
-    -#     .navbar-header
-    -#       %a.navbar-brand{:href => "../"} Bootswatch
-
-    -# .container
-    -# .page-header
-    -# .row
-    -#   .col-lg-8.col-md-7.col-sm-6
-    -#     %h1 United
-    -# #banner.page-header
-    -#   .row
-    -#     .col-lg-8.col-md-7.col-sm-6
-    -#       %h1 United
+            - unless signed_in?
+              %li= link_to 'Login', '/auth/facebook'
+            - else
+              %li= link_to "Logout", logout_path
     .container
-      -# #banner.page-header
       .page-header
         .row
           .col-lg-8.col-md-7.col-sm-6
             %h1= link_to Settings.app_name, :root
-        -#   = link_to Settings.app_name, :root
 
         -#   - if signed_in?
         -#     = render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" }
