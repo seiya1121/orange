@@ -1,0 +1,23 @@
+
+%h2 Schedules
+
+-# - # スケジュール新規作成モーダル
+-# = link_to 'New Schedule', '#', data: { toggle: 'modal', target: '#new_modal' }
+-# = render partial: '/schedules/new_schedule_modal', locals: { schedule: Schedule.new }
+
+%h3= link_to( @current_date.strftime("%Y年"), schedules_path( current_date: Time.now.strftime("%Y-%m-01") ) )
+
+%ul.pagination
+  - 1.upto(12) do |month|
+    %li{ class: (@current_date.month == month ? 'active' : '') }
+      = link_to "#{month}月", schedules_path(current_date: "#{@current_date.year}-#{month}-01")
+%br
+%br
+
+- # カレンダー表示
+= render partial: '/schedules/calendar', locals: { current_date: @current_date, schedule_hash: @schedule_hash, current_page: 1 }
+
+-# - # オートページャー用
+-# = hidden_field_tag :autopager_on, true
+-# = hidden_field_tag :target_month, @current_date.strftime("%Y-%m")
+-# = hidden_field_tag :current_page, 1

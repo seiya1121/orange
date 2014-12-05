@@ -1,0 +1,30 @@
+-# %p#notice= notice
+
+%p
+  %b User:
+  = @schedule.user
+%p
+  %b Organization:
+  = @schedule.organization
+%p
+  %b Group:
+  = @schedule.group
+%p
+  %b Repeat setting:
+  = @schedule.repeat_setting
+%p
+  %b Title:
+  = @schedule.title
+%p
+  %b Note:
+  = @schedule.note
+%p
+  %b Start at:
+  = @schedule.start_at
+%p
+  %b End at:
+  = @schedule.end_at
+
+= link_to 'Edit', edit_schedule_path(@schedule)
+\|
+= link_to 'Back', schedules_path
