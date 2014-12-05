@@ -1,10 +1,10 @@
 
-.modal.fade{ id: "new_modal_#{day.strftime("%Y_%m_%d")}" }
+.modal.fade{ id: "edit_modal_#{schedule.id}" }
   .modal-dialog
     .modal-content
       = form_for schedule, html: { class: 'form-horizontal', role: 'form' } do |f|
         .modal-header
-          %h4.modal-title New Schedule
+          %h4.modal-title Edit Schedule
         .modal-body
           = render partial: '/schedules/form_modal', locals: { f: f, day: day }
         .modal-footer

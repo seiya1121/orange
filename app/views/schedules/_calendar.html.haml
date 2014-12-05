@@ -31,7 +31,6 @@
             = link_to day.day, '#', rel: 'tooltip', data: { toggle: 'modal', title: HolidayJapan.name(day), target: "#new_modal_#{day.strftime("%Y_%m_%d")}" }
 
             - # スケジュール新規作成モーダル
-            -# = link_to 'New Schedule', '#', data: { toggle: 'modal', target: "#new_modal_#{day.strftime("%Y_%m_%d")}" }
             = render partial: '/schedules/new_schedule_modal', locals: { schedule: Schedule.new, day: day }
 
             %br
@@ -39,9 +38,13 @@
             - if schedule.present?
               - schedule.each do |s|
                 - # スケジュール表示
-                -# - popover_title = day_title(s) (s.start_at.present? ? s.start_at.strftime("%H:%M") : '') + "〜" + (s.end_at.present? ? s.end_at.strftime("%H:%M") : '')
-                -# = link_to s.title, edit_schedule_path(s), data: { toggle: 'popover', title: popover_title, content: markdown(s.note) }
-                %span{ style: 'color: #000;' }= link_to s.title, edit_schedule_path(s), data: { toggle: 'popover', title: schedule_popover_title(s), content: markdown(s.note) }
+                %span{ style: 'color: #000;' }
+                  - # スケジュールタイトル
+                  -# = link_to s.title, edit_schedule_path(s), data: { toggle: 'popover', title: schedule_popover_title(s), content: markdown(s.note) }
+                  = link_to s.title, '#', rel: 'popover', data: { toggle: 'modal', title: schedule_popover_title(s), content: markdown(s.note), target: "#edit_modal_#{s.id}" }
+
+                  - # スケジュール編集モーダル
+                  = render partial: '/schedules/edit_schedule_modal', locals: { schedule: s, day: day }
                 %br
         - (6 - current_date.end_of_month.wday).times do
           %td
