@@ -13,3 +13,103 @@
  *= require_tree .
  *= require_self
  */
+
+
+/*.container {
+  position: absolute;
+  width: 1100px;
+  left: 50%;
+  margin-left: -550px;
+}*/
+
+/*.page_top_margin {
+  margin: 40px 50px 0px 50px;
+}*/
+
+/* カレンダー */
+.calendar_area table, .calendar_area td, .calendar_area th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* カレンダー内 リンク */
+.calendar_area a {
+  color: #000000;
+}
+
+/* カレンダー内 スタイル */
+.calendar_area th, .calendar_area td {
+  text-align: left;
+  vertical-align: top;
+}
+
+/* カレンダー内 曜日カラム */
+.calendar_area .calendar th {
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* カレンダー内 日付セル */
+.calendar_area .calendar td {
+  padding: 5px;
+  width: 135px;
+  height: 135px;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* 日曜日 */
+.calendar_area .sunday, .calendar_area .sunday a {
+  color: #ff0000;
+}
+
+/* 土曜日 */
+.calendar_area .saturday, .calendar_area .saturday a {
+  color: #0000ff;
+}
+
+/* 今日 */
+.calendar_area .today {
+  background-color: #ddeeff;
+}
+
+/* カレンダー内部スケジュール名 */
+.calendar_area .schedule_title {
+  font-size: 12px;
+}
+
+.active_month a {
+  color: #fff;
+  background-color: #dd4814;
+}
+
+.sunday{
+  color: #f00;
+}
+
+.saturday{
+  color: #00f;
+}
+
+.modal{
+  color: #000;
+}
+
+td {
+  padding: 5px;
+}
+
+ul.pagination {
+  margin: 0px 0px 0px 0px;
+}
+
+textarea {
+  font-family: Courier;
+  font-size: 12px;
+}
+
+.calendar .tooltip li, .calendar .tooltip a{
+  color: #fff;
+  text-align: left;
+}

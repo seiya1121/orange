@@ -53,9 +53,12 @@ gem "exception_notification"
 gem "haml-rails"
 gem "ruby-duration"
 gem "everywhere"
-gem "opal-rails"
+# gem 'opal-rails', '~> 0.7.0.beta1'
+gem 'opal-rails'
 gem "redcarpet"
 gem "coderay"
+gem 'holiday_jp'
+gem 'holiday_japan'
 
 group :development do
   gem "pry-rails"
@@ -70,7 +73,7 @@ end
 
 group :development, :test do
   gem "sqlite3"
-  gem "rspec-rails"
+  # gem "rspec-rails"  # scaffold時にエラー
 end
 
 group :production do

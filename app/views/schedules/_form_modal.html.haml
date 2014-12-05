@@ -1,0 +1,17 @@
+
+.form-group
+  = f.label :title, class: 'col-lg-2 control-label'
+  .col-lg-10
+    = f.text_field :title, class: 'form-control'
+.form-group
+  = f.label :note, class: 'col-lg-2 control-label'
+  .col-lg-10
+    = f.text_area :note, rows: 10, class: 'form-control'
+.form-group
+  = f.label :start_at, class: 'col-lg-2 control-label'
+  .col-lg-10
+    = f.datetime_select :start_at, { class: 'form-control', minute_step: 5, use_month_numbers: true, date_separator: ' ', datetime_separator: '　', time_separator: ' : ', default: day }
+.form-group
+  = f.label :end_at, class: 'col-lg-2 control-label'
+  .col-lg-10
+    = f.datetime_select :end_at, { class: 'form-control', minute_step: 5, use_month_numbers: true, date_separator: ' ', datetime_separator: '　', time_separator: ' : ', default: day }

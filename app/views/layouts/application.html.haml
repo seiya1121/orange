@@ -5,6 +5,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = favicon_link_tag 'favicon.ico'
   %body{ 'data-no-turbolink' => true }
     .navbar.navbar-default.navbar-fixed-top
       .container
@@ -17,6 +18,8 @@
             %span.icon-bar
         #navbar-main.navbar-collapse.collapse
           %ul.nav.navbar-nav
+            %li= link_to 'Schedules', schedules_path
+
             %li.dropdown
               %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 Themes
@@ -89,26 +92,12 @@
               %li= link_to 'Login', '/auth/facebook'
             - else
               %li= link_to "Logout", logout_path
-    .container
-      .page-header
-        .row
-          .col-lg-8.col-md-7.col-sm-6
-            %h1= link_to Settings.app_name, :root
+    .container{ style: 'margin-top: 50px;' }
+      %p
+        = simple_format(flash[:notice], style: "color: green;") if flash[:notice].present?
+        = simple_format(flash[:alert], style: "color: red;")    if flash[:alert].present?
 
-        -#   - if signed_in?
-        -#     = render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" }
-        -#     = link_to "Top",    root_path
-        -#     = link_to "Logout", logout_path
-        -#   - else
-        -#     Login:
-        -#     -# = link_to 'Twitter',  '/auth/twitter'
-        -#     = link_to 'Facebook', '/auth/facebook'
-        -#     -# = link_to 'GitHub',   '/auth/github'
-
-          = simple_format(flash[:notice], style: "color: green;") if flash[:notice].present?
-          = simple_format(flash[:alert], style: "color: red;")    if flash[:alert].present?
-
-          = yield
+      = yield
 
     %br/
     %br/
