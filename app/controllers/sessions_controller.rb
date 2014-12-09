@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     user = User.find_by(id: authentication.user_id) || User.create_with_auth(authentication, request)
 
     session[:user_id] = user.id
-    flash[:notice]    = "ログインしました。"
+    # flash[:notice]    = "ログインしました。"
 
     # 保管URLへリダイレクト
     unless session[:request_url].blank?
@@ -28,7 +28,8 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
 
-    redirect_to :root, notice: "ログアウトしました。" and return
+    # redirect_to :root, notice: "ログアウトしました。" and return
+    redirect_to :root and return
   end
 
   # ログインエラー
