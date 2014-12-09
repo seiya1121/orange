@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     get 'pager', on: :collection
   end
 
+  resources :organizations
+
   root to: 'top#index'
 
   # For OmniAuth

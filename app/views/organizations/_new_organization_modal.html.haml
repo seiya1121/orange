@@ -1,0 +1,12 @@
+
+.modal.fade{ id: "new_organization_modal" }
+  .modal-dialog
+    .modal-content
+      = form_for organization, html: { class: 'form-horizontal', role: 'form' } do |f|
+        .modal-header
+          %h4.modal-title New Organization
+        .modal-body
+          -# = render partial: '/schedules/form_modal', locals: { f: f, day: day }
+        .modal-footer
+          %button.btn.btn-default{ data: { dismiss: 'modal' }, type: 'button' } Close
+          = f.submit 'Save', data: { disable_with: 'Save' }, class: 'btn btn-primary'
