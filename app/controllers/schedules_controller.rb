@@ -9,9 +9,6 @@ class SchedulesController < ApplicationController
 
     # スケジュールハッシュ生成
     @schedule_hash = Schedule.generate_schedule_hash(@current_date, current_user)
-
-    # # 祝日ハッシュ生成
-    # @holiday_hash = Schedule.generate_holiday_hash(@current_date)
   end
 
   # GET /schedules/1
@@ -61,16 +58,12 @@ class SchedulesController < ApplicationController
   end
 
   # オートページャー
-  def pager(target_month, page)
+  def pager(target_month: nil, page: 1)
     current_date = target_month.present? ? Date.parse("#{target_month}-01") : Date.today
     current_date = Date.parse(current_date.since(page.to_i.month).strftime("%Y-%m-01"))
 
     # スケジュールハッシュ生成
-    # schedule_hash = generate_schedule_hash(current_date)
     schedule_hash = Schedule.generate_schedule_hash(current_date, current_user)
-
-    # 祝日ハッシュ生成
-    # holiday_hash = generate_holiday_hash(current_date)
 
     render partial: '/schedules/calendar', locals: { current_date: current_date, schedule_hash: schedule_hash, current_page: (page.to_i + 1) }
   end

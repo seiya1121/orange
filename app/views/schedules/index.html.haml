@@ -1,10 +1,6 @@
 
 %h2 Schedules
 
--# - # スケジュール新規作成モーダル
--# = link_to 'New Schedule', '#', data: { toggle: 'modal', target: '#new_modal' }
--# = render partial: '/schedules/new_schedule_modal', locals: { schedule: Schedule.new }
-
 %h3= link_to( @current_date.strftime("%Y年"), schedules_path( current_date: Time.now.strftime("%Y-%m-01") ) )
 
 %ul.pagination

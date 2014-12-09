@@ -9,10 +9,12 @@ $(function(){
   $('.target_blank a').attr('target' , '_blank');
 
   // オートページャー有効フラグ
-  if ($('#autopager_on').val() == 'true') { autopager(); };
+  if ($('#autopager_on').val() == 'true') {
+    autopager();
 
-  // 初期状態で2ページ目を読み込む(ディスプレイの縦幅が大きい場合スクロールバーが表示されないため)
-  add_page($(this));
+    // 初期状態で2ページ目を読み込む(ディスプレイの縦幅が大きい場合スクロールバーが表示されないため)
+    add_page($(this));
+  };
 });
 
 // オートページャー
