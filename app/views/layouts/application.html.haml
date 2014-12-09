@@ -18,7 +18,8 @@
             %span.icon-bar
         #navbar-main.navbar-collapse.collapse
           %ul.nav.navbar-nav
-            %li= link_to 'Schedules', schedules_path
+            - if current_user.present?
+              %li= link_to 'Schedules', schedules_path
 
             -# %li.dropdown
             -#   %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
