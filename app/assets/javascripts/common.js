@@ -10,10 +10,10 @@ $(function(){
 
   // オートページャー有効フラグ
   if ($('#autopager_on').val() == 'true') {
-    autopager();
-
     // 初期状態で2ページ目を読み込む(ディスプレイの縦幅が大きい場合スクロールバーが表示されないため)
     add_page($(this));
+
+    autopager();
   };
 });
 
@@ -46,8 +46,10 @@ function add_page(obj) {
       $('#current_page').val(next_page);  // ページ数更新
       obj.data('loading', false);         // ローディングフラグOFF
 
-      $('a[rel=tooltip]').tooltip( { html: true, placement: 'bottom', trigger: 'hover' } );
-      $('a[rel=popover]').popover( { html: true, placement: 'bottom', trigger: 'hover' } );
+      $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover', placement: 'bottom', html: true })
+      $('[data-toggle="popover"]').popover({ trigger: 'hover', placement: 'bottom', html: true })
+      $('[rel="tooltip"]').tooltip({ trigger: 'hover', placement: 'bottom', html: true })
+      $('[rel="popover"]').popover({ trigger: 'hover', placement: 'bottom', html: true })
     },
     "html"                                // 応答データ形式
   );
