@@ -17,7 +17,7 @@
 - # カレンダー表示
 = render partial: '/schedules/calendar', locals: { current_date: @current_date, schedule_hash: @schedule_hash, current_page: 1 }
 
--# - # オートページャー用
--# = hidden_field_tag :autopager_on, true
--# = hidden_field_tag :target_month, @current_date.strftime("%Y-%m")
--# = hidden_field_tag :current_page, 1
+- # オートページャー用
+= hidden_field_tag :autopager_on, true
+= hidden_field_tag :target_month, @current_date.strftime("%Y-%m")
+= hidden_field_tag :current_page, 1

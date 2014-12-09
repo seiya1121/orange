@@ -16,7 +16,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/1
   def show(id)
-    @schedule = Schedule.find(id)
+    @schedule = Schedule.find_by(id: id, user_id: current_user.id)
   end
 
   # GET /schedules/new
@@ -26,7 +26,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/1/edit
   def edit(id)
-    @schedule = Schedule.find(id)
+    @schedule = Schedule.find_by(id: id, user_id: current_user.id)
   end
 
   # POST /schedules
@@ -35,7 +35,7 @@ class SchedulesController < ApplicationController
     @schedule.user_id = current_user.id
 
     if @schedule.save
-      redirect_to schedules_path, notice: 'Schedule was successfully created.'
+      redirect_to schedules_path(current_date: @schedule.start_at.to_date)
     else
       render :new
     end
@@ -43,10 +43,10 @@ class SchedulesController < ApplicationController
 
   # PUT /schedules/1
   def update(id, schedule)
-    @schedule = Schedule.find(id)
+    @schedule = Schedule.find_by(id: id, user_id: current_user.id)
 
     if @schedule.update(schedule)
-      redirect_to schedules_path, notice: 'Schedule was successfully updated.'
+      redirect_to schedules_path(current_date: @schedule.start_at.to_date)
     else
       render :edit
     end
@@ -54,9 +54,24 @@ class SchedulesController < ApplicationController
 
   # DELETE /schedules/1
   def destroy(id)
-    @schedule = Schedule.find(id)
+    @schedule = Schedule.find_by(id: id, user_id: current_user.id)
     @schedule.destroy
 
     redirect_to schedules_url, notice: 'Schedule was successfully destroyed.'
+  end
+
+  # オートページャー
+  def pager(target_month, page)
+    current_date = target_month.present? ? Date.parse("#{target_month}-01") : Date.today
+    current_date = Date.parse(current_date.since(page.to_i.month).strftime("%Y-%m-01"))
+
+    # スケジュールハッシュ生成
+    # schedule_hash = generate_schedule_hash(current_date)
+    schedule_hash = Schedule.generate_schedule_hash(current_date, current_user)
+
+    # 祝日ハッシュ生成
+    # holiday_hash = generate_holiday_hash(current_date)
+
+    render partial: '/schedules/calendar', locals: { current_date: current_date, schedule_hash: schedule_hash, current_page: (page.to_i + 1) }
   end
 end
