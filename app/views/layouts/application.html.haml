@@ -29,6 +29,7 @@
                   %span.caret
                 %ul.dropdown-menu{ "aria-labelledby" => "organizations_menu" }
                   %li= link_to 'New Organizations', organizations_path
+                  - # Organization一覧
                   - Organization.belong(current_user).each do |organization|
                     %li= link_to organization.name, organization_schedules_path(organization)
               - if @organization.try(:id).present?
