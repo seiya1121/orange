@@ -4,6 +4,8 @@ Schedule management tool.
 
 ## Basic Authentication
 
+* [orange/application_controller.rb at master · shu0115/orange](https://github.com/shu0115/orange/blob/master/app/controllers/application_controller.rb#L8)
+
 ---
 
 ## Local Setting
