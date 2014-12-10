@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       session[:request_url] = request.url
 
       # ルートヘリダイレクト
-      redirect_to :root and return
+      redirect_to :root, alert: 'ログインが必要です。' and return
     end
   end
 

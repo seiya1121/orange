@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210051528) do
+ActiveRecord::Schema.define(version: 20141210073813) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141210051528) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "invite_token"
   end
 
   add_index "organizations", ["user_id"], name: "index_organizations_on_user_id"
