@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     # flash[:notice]    = "ログインしました。"
 
     # 保管URLへリダイレクト
-    unless session[:request_url].blank?
+    if session[:request_url].present?
       redirect_to session[:request_url]
       session[:request_url] = nil
       return

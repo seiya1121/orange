@@ -1,0 +1,21 @@
+%h2 Organization Members
+
+- if @organization.owner?(current_user)
+  %p
+    招待リンク:
+    %br
+    = link_to add_member_organization_url(@organization, invite_token: @organization.invite_token), add_member_organization_url(@organization, invite_token: @organization.invite_token)
+
+%table.table.table-striped.table-hover
+  %tbody
+    %tr
+      %th No.
+      %th メンバー名
+      %th
+    - @members.each.with_index(1) do |member, index|
+      %tr
+        %td= index
+        %td= member.user.try(:name)
+        %td
+          - if current_user.id != member.user_id and @organization.user_id != member.user_id
+            = link_to 'メンバー解除', delete_member_organization_path(@organization, member_id: member.id), method: :delete, data: { confirm: "「#{member.user.try(:name)}」をメンバーから除外します。よろしいですか？" }

@@ -2,6 +2,7 @@ class SchedulesController < ApplicationController
   permits :repeat_setting, :title, :note, :start_at, :end_at
 
   before_action :set_organization
+  before_action :check_member
 
   # スケジュール一覧(カレンダー)
   def index(current_date: nil, organization_id: nil)
@@ -78,5 +79,12 @@ class SchedulesController < ApplicationController
     @organization = Organization.find_by(id: params[:organization_id])
 
     redirect_to root_path, alert: '組織情報がありません。' and return if @organization.blank?
+  end
+
+  # 組織情報取得
+  def check_member
+    unless Member::OrganizationMember.where(organization_id: params[:organization_id], user_id: current_user.id).exists?
+      redirect_to root_path, alert: 'メンバーとして登録されていません。' and return
+    end
   end
 end

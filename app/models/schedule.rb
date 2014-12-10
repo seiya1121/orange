@@ -15,21 +15,11 @@ class Schedule < ActiveRecord::Base
   # スケジュールハッシュ生成
   def self.generate_schedule_hash(current_date, user, organization_id)
     schedule_hash = Hash.new{ |hash, key| hash[key] = Array.new }
-    schedules = Schedule.where(organization_id: organization_id).mine(user).where(start_at: (current_date.beginning_of_month.beginning_of_day..current_date.end_of_month.end_of_day)).order("schedules.start_at ASC")
+    schedules = Schedule.where(organization_id: organization_id).where(start_at: (current_date.beginning_of_month.beginning_of_day..current_date.end_of_month.end_of_day)).order("schedules.start_at ASC")
     schedules.each do |schedule|
       schedule_hash[schedule.start_at.strftime("%Y_%m_%d")].push(schedule)
     end
 
     return schedule_hash
   end
-
-  # # 祝日ハッシュ生成
-  # def self.generate_holiday_hash(current_date)
-  #   holiday_hash = Hash.new
-  #   HolidayJp.between(current_date.beginning_of_month, current_date.end_of_month).each do |h|
-  #     holiday_hash[h.date] = h.name
-  #   end
-
-  #   return holiday_hash
-  # end
 end

@@ -4,6 +4,12 @@ Rails.application.routes.draw do
     resources :schedules do
       get 'pager', on: :collection
     end
+
+    member do
+      get 'members'
+      get 'add_member'
+      delete 'delete_member'
+    end
   end
 
   root to: 'top#index'
