@@ -1,11 +1,11 @@
 
 %div{ id: "page_#{current_page}" }
   %ul.pagination
-    %li= link_to "今月", schedules_path(current_date: Time.now.strftime("%Y-%m-01"))
+    %li= link_to "今月", organization_schedules_path(organization, current_date: Time.now.strftime("%Y-%m-01"))
   %br
   %ul.pagination
-    %li= link_to "前月", schedules_path(current_date: current_date.ago(1.month).strftime("%Y-%m-01"))
-    %li= link_to "次月", schedules_path(current_date: current_date.since(1.month).strftime("%Y-%m-01"))
+    %li= link_to "前月", organization_schedules_path(organization, current_date: current_date.ago(1.month).strftime("%Y-%m-01"))
+    %li= link_to "次月", organization_schedules_path(organization, current_date: current_date.since(1.month).strftime("%Y-%m-01"))
 
   %h4= current_date.strftime("%Y年%m月")
   .calendar_area
@@ -31,7 +31,7 @@
             = link_to day.day, '#', rel: 'tooltip', data: { toggle: 'modal', title: HolidayJapan.name(day), target: "#new_modal_#{day.strftime("%Y_%m_%d")}" }
 
             - # スケジュール新規作成モーダル
-            = render partial: '/schedules/new_schedule_modal', locals: { schedule: Schedule.new, day: day }
+            = render partial: '/schedules/new_schedule_modal', locals: { organization: organization, schedule: Schedule.new, day: day }
 
             %br
             - schedule = schedule_hash[day.strftime("%Y_%m_%d")]
@@ -44,7 +44,7 @@
                   = link_to s.title, '#', rel: 'popover', data: { toggle: 'modal', title: schedule_popover_title(s), content: markdown(s.note), target: "#edit_modal_#{s.id}" }
 
                   - # スケジュール編集モーダル
-                  = render partial: '/schedules/edit_schedule_modal', locals: { schedule: s, day: day }
+                  = render partial: '/schedules/edit_schedule_modal', locals: { organization: organization, schedule: s, day: day }
                 %br
         - (6 - current_date.end_of_month.wday).times do
           %td

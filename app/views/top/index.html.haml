@@ -1,1 +1,10 @@
-%h1= "Welcome to #{Settings.app_name}"
+
+- if current_user.present?
+  %h1= "Your Organizations"
+
+  %p= link_to 'New Organizations', organizations_path
+
+  - Organization.belong(current_user).each do |organization|
+    %p= link_to organization.name, organization_schedules_path(organization)
+- else
+  %h1= "Welcome to #{Settings.app_name}"

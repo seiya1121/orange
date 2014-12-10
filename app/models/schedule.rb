@@ -13,9 +13,9 @@ class Schedule < ActiveRecord::Base
 
   ## クラスメソッド
   # スケジュールハッシュ生成
-  def self.generate_schedule_hash(current_date, user)
+  def self.generate_schedule_hash(current_date, user, organization_id)
     schedule_hash = Hash.new{ |hash, key| hash[key] = Array.new }
-    schedules = Schedule.mine(user).where(start_at: (current_date.beginning_of_month.beginning_of_day..current_date.end_of_month.end_of_day)).order("schedules.start_at ASC")
+    schedules = Schedule.where(organization_id: organization_id).mine(user).where(start_at: (current_date.beginning_of_month.beginning_of_day..current_date.end_of_month.end_of_day)).order("schedules.start_at ASC")
     schedules.each do |schedule|
       schedule_hash[schedule.start_at.strftime("%Y_%m_%d")].push(schedule)
     end

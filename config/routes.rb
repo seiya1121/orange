@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :schedules do
-    get 'pager', on: :collection
+  resources :organizations do
+    resources :groups
+    resources :schedules do
+      get 'pager', on: :collection
+    end
   end
-
-  resources :organizations
 
   root to: 'top#index'
 

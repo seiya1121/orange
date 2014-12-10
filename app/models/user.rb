@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_many :authentications
+  has_many :members
+  has_many :organizations
+  has_many :groups
 
   private
 

@@ -10,8 +10,10 @@
     .navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
-          %a.navbar-brand{ href: root_path }
-            = Settings.app_name
+          - if @organization.try(:id).present?
+            = link_to @organization.name, organization_schedules_path(@organization), class: 'navbar-brand'
+          - else
+            = link_to Settings.app_name, root_path, class: 'navbar-brand'
           %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
             %span.icon-bar
             %span.icon-bar
@@ -19,25 +21,19 @@
         #navbar-main.navbar-collapse.collapse
           %ul.nav.navbar-nav
             - if current_user.present?
-              %li= link_to 'Schedules', schedules_path
               %li.dropdown
                 = link_to '#', id: 'organizations_menu', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
                   Organizations
                   %span.caret
                 %ul.dropdown-menu{ "aria-labelledby" => "organizations_menu" }
-                  %li= link_to 'All Organizations', organizations_path
-                  -# = link_to 'New Organization', '#', data: { toggle: 'modal', target: "#new_organization_modal" }
+                  %li= link_to 'New Organizations', organizations_path
+                  - Organization.belong(current_user).each do |organization|
+                    %li= link_to organization.name, organization_schedules_path(organization)
+              - if @organization.try(:id).present?
+                %li= link_to 'Schedules', organization_schedules_path(@organization)
 
-                  -# - # Organization新規作成モーダル
-                  -# = render partial: '/organizations/new_organization_modal', locals: { organization: Organization.new }
-
-                  -# %a{:href => "../default/"} Default
-                -# %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                -#   Themes
-                -#   %span.caret
-                -# %ul.dropdown-menu{"aria-labelledby" => "themes"}
-                -#   %li
-                -#     %a{:href => "../default/"} Default
+              -# %li= link_to 'Groups', organization_groups_path
+              -# %li= link_to 'Schedules', schedules_path
 
             -# %li.dropdown
             -#   %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -53,32 +49,6 @@
             -#       %a{:href => "../cosmo/"} Cosmo
             -#     %li
             -#       %a{:href => "../cyborg/"} Cyborg
-            -#     %li
-            -#       %a{:href => "../darkly/"} Darkly
-            -#     %li
-            -#       %a{:href => "../flatly/"} Flatly
-            -#     %li
-            -#       %a{:href => "../journal/"} Journal
-            -#     %li
-            -#       %a{:href => "../lumen/"} Lumen
-            -#     %li
-            -#       %a{:href => "../paper/"} Paper
-            -#     %li
-            -#       %a{:href => "../readable/"} Readable
-            -#     %li
-            -#       %a{:href => "../sandstone/"} Sandstone
-            -#     %li
-            -#       %a{:href => "../simplex/"} Simplex
-            -#     %li
-            -#       %a{:href => "../slate/"} Slate
-            -#     %li
-            -#       %a{:href => "../spacelab/"} Spacelab
-            -#     %li
-            -#       %a{:href => "../superhero/"} Superhero
-            -#     %li
-            -#       %a{:href => "../united/"} United
-            -#     %li
-            -#       %a{:href => "../yeti/"} Yeti
             -# %li
             -#   %a{:href => "../help/"} Help
             -# %li
@@ -97,11 +67,6 @@
             -#       %a{:href => "./variables.less"} variables.less
             -#     %li
             -#       %a{:href => "./bootswatch.less"} bootswatch.less
-            -#     %li.divider
-            -#     %li
-            -#       %a{:href => "./_variables.scss"} _variables.scss
-            -#     %li
-            -#       %a{:href => "./_bootswatch.scss"} _bootswatch.scss
           %ul.nav.navbar-nav.navbar-right
             -# %li
             -#   %a{:href => "http://builtwithbootstrap.com/", :target => "_blank"} Built With Bootstrap

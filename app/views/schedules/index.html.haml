@@ -1,19 +1,20 @@
 
 %h2 Schedules
 
-%h3= link_to( @current_date.strftime("%Y年"), schedules_path( current_date: Time.now.strftime("%Y-%m-01") ) )
+%h3= link_to(@current_date.strftime("%Y年"), organization_schedules_path(@organization, current_date: Time.now.strftime("%Y-%m-01")))
 
 %ul.pagination
   - 1.upto(12) do |month|
     %li{ class: (@current_date.month == month ? 'active' : '') }
-      = link_to "#{month}月", schedules_path(current_date: "#{@current_date.year}-#{month}-01")
+      = link_to "#{month}月", organization_schedules_path(@organization, current_date: "#{@current_date.year}-#{month}-01")
 %br
 %br
 
 - # カレンダー表示
-= render partial: '/schedules/calendar', locals: { current_date: @current_date, schedule_hash: @schedule_hash, current_page: 1 }
+= render partial: '/schedules/calendar', locals: { organization: @organization, current_date: @current_date, schedule_hash: @schedule_hash, current_page: 1 }
 
-- # オートページャー用
+- # オートページャー用パラメータ
 = hidden_field_tag :autopager_on, true
 = hidden_field_tag :target_month, @current_date.strftime("%Y-%m")
 = hidden_field_tag :current_page, 1
+= hidden_field_tag :pager_schedules_path, pager_organization_schedules_path(@organization)

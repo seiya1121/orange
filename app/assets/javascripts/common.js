@@ -38,7 +38,7 @@ function add_page(obj) {
 
   obj.data('loading', true);  // ローディングフラグON
   $.get(
-    "/schedules/pager",
+    $('#pager_schedules_path').val(),
     // 送信データ
     { 'target_month': target_month, 'page': page },
     function(data, status) {

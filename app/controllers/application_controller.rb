@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate           # ログイン認証
   before_action :reset_session_expires  # セッション有効期限延長
 
+  http_basic_authenticate_with name: "orange", password: "orange1210" unless Rails.env.development?
+
   private
 
   # ログイン認証
