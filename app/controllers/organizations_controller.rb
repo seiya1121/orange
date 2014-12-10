@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
   permits :name
 
-  before_action :set_organization
+  before_action :set_organization, except: [:index, :create]
 
   # 一覧
   def index
