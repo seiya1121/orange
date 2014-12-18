@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   # 一覧
   def index
-    @organizations = Organization.all
+    @organizations = Organization.order(created_at: :asc).all
     @organization  = Organization.new
   end
 

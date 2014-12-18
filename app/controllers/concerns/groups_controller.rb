@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # 一覧
   def index(organization_id)
     @organization = Organization.find_by(id: organization_id)
-    @groups       = Group.where(organization_id: organization_id)
+    @groups       = Group.where(organization_id: organization_id).order(created_at: :asc)
     @group        = Group.new
   end
 
