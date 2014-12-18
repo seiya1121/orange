@@ -16,4 +16,4 @@
     - @organizations.each do |organization|
       %tr
         %td= organization.user.try(:name)
-        %td= link_to organization.name, organization_schedules_path(organization)
+        %td= link_to organization.name, edit_organization_path(organization)

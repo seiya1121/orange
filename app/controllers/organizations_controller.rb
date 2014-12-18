@@ -18,6 +18,19 @@ class OrganizationsController < ApplicationController
     redirect_to organizations_path and return
   end
 
+  # 編集
+  def edit(id)
+    @organization = Organization.find_by(id: id)
+  end
+
+  # 更新
+  def update(id, organization)
+    @organization = Organization.find_by(id: id)
+    @organization.update!(organization.permit!)
+
+    redirect_to organizations_path and return
+  end
+
   # メンバー一覧
   def members(id)
     @members = Member::OrganizationMember.where(organization_id: id)
