@@ -32,15 +32,17 @@ class SchedulesController < ApplicationController
   end
 
   # POST /schedules
-  def create(organization_id, schedule, group_ids)
+  def create(organization_id, schedule, group_ids: nil)
     @schedule = Schedule.new(schedule)
     @schedule.user_id         = current_user.id
     @schedule.organization_id = organization_id
 
     if @schedule.save
       # グループ紐付け
-      group_ids.each do |group_id|
-        Participation.create(schedule_id: @schedule.id, group_id: group_id, organization_id: organization_id)
+      if group_ids.present?
+        group_ids.each do |group_id|
+          Participation.create(schedule_id: @schedule.id, group_id: group_id, organization_id: organization_id)
+        end
       end
 
       redirect_to organization_schedules_path(@schedule.organization_id, current_date: @schedule.start_at.to_date)
@@ -50,15 +52,17 @@ class SchedulesController < ApplicationController
   end
 
   # PUT /schedules/1
-  def update(id, schedule, group_ids)
+  def update(id, schedule, group_ids: nil)
     @schedule = Schedule.find_by(id: id, user_id: current_user.id)
 
     if @schedule.update(schedule)
       delete_group_ids = @schedule.group_ids - group_ids.map{|x| x.to_i }
 
       # グループ紐付け
-      group_ids.each do |group_id|
-        Participation.where(schedule_id: @schedule.id, group_id: group_id, organization_id: @schedule.organization_id).first_or_create
+      if group_ids.present?
+        group_ids.each do |group_id|
+          Participation.where(schedule_id: @schedule.id, group_id: group_id, organization_id: @schedule.organization_id).first_or_create
+        end
       end
 
       Participation.where(schedule_id: @schedule.id, group_id: delete_group_ids, organization_id: @schedule.organization_id).delete_all
