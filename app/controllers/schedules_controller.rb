@@ -20,13 +20,15 @@ class SchedulesController < ApplicationController
   end
 
   # GET /schedules/new
-  def new
+  def new(organization_id, day)
     @schedule = Schedule.new
+    @day      = Date.parse(day)
   end
 
   # GET /schedules/1/edit
-  def edit(id)
+  def edit(id, day)
     @schedule = Schedule.find_by(id: id, user_id: current_user.id)
+    @day      = Date.parse(day)
   end
 
   # POST /schedules

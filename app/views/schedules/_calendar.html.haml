@@ -27,24 +27,24 @@
             %tr
           %td{ class: "#{day_class(day)} #{today_class(day)}" }
             - # 日付表示
-            -# = link_to day.day, new_schedule_path(date: day), data: { toggle: 'tooltip', title: HolidayJapan.name(day) }
-            = link_to day.day, '#', rel: 'tooltip', data: { toggle: 'modal', title: HolidayJapan.name(day), target: "#new_modal_#{day.strftime("%Y_%m_%d")}" }
+            -# = link_to day.day, '#', rel: 'tooltip', data: { toggle: 'modal', title: HolidayJapan.name(day), target: "#new_modal_#{day.strftime("%Y_%m_%d")}" }
+            = link_to day.day, new_organization_schedule_path(organization, day: day), rel: 'tooltip', data: { title: HolidayJapan.name(day), target: "#new_modal_#{day.strftime("%Y_%m_%d")}" }
 
-            - # スケジュール新規作成モーダル
-            = render partial: '/schedules/new_schedule_modal', locals: { organization: organization, schedule: Schedule.new, day: day }
+            -# - # スケジュール新規作成モーダル
+            -# = render partial: '/schedules/new_schedule_modal', locals: { organization: organization, schedule: Schedule.new, day: day }
 
             %br
-            - schedule = schedule_hash[day.strftime("%Y_%m_%d")]
-            - if schedule.present?
-              - schedule.each do |s|
+            - schedules = schedule_hash[day.strftime("%Y_%m_%d")]
+            - if schedules.present?
+              - schedules.each do |schedule|
                 - # スケジュール表示
                 %span{ style: 'color: #000;' }
                   - # スケジュールタイトル
-                  -# = link_to s.title, edit_schedule_path(s), data: { toggle: 'popover', title: schedule_popover_title(s), content: markdown(s.note) }
-                  = link_to s.title, '#', rel: 'popover', data: { toggle: 'modal', title: schedule_popover_title(s), content: markdown(s.note), target: "#edit_modal_#{s.id}" }
+                  -# = link_to s.title, '#', rel: 'popover', data: { toggle: 'modal', title: schedule_popover_title(s), content: markdown(s.note), target: "#edit_modal_#{s.id}" }
+                  = link_to schedule.title, edit_organization_schedule_path(organization, schedule, day: day), rel: 'popover', data: { title: schedule_popover_title(schedule), content: markdown(schedule.note) }
 
-                  - # スケジュール編集モーダル
-                  = render partial: '/schedules/edit_schedule_modal', locals: { organization: organization, schedule: s, day: day }
+                  -# - # スケジュール編集モーダル
+                  -# = render partial: '/schedules/edit_schedule_modal', locals: { organization: organization, schedule: s, day: day }
                 %br
         - (6 - current_date.end_of_month.wday).times do
           %td

@@ -1,0 +1,7 @@
+= form_for @schedule, url: organization_schedule_path(@schedule.organization, @schedule), method: :put, html: { class: 'form-horizontal', role: 'form' } do |f|
+  .modal-header
+    %h4.modal-title Edit Schedule
+  .modal-body
+    = render partial: '/schedules/form', locals: { f: f, day: @day, organization: @schedule.organization }
+  .modal-footer
+    = f.submit 'Save', data: { disable_with: 'Save' }, class: 'btn btn-primary'
