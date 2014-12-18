@@ -1,13 +1,15 @@
-%h2 Edit Group
 
-= form_for @group, url: organization_group_path(@group.organization_id, @group) do |f|
-  %fieldset
-    .form-group
-      %label.col-lg-2.control-label{:for => "inputEmail"} Name
-      .col-lg-10
-        = f.text_field :name, class: 'form-control'
+- if @group.owner?(current_user)
+  %h2 Edit Group
 
-%h2 Organization Members
+  = form_for @group, url: organization_group_path(@group.organization_id, @group) do |f|
+    %fieldset
+      .form-group
+        %label.col-lg-2.control-label{:for => "inputEmail"} Name
+        .col-lg-10
+          = f.text_field :name, class: 'form-control'
+
+%h2 Group Members
 
 %table.table.table-striped.table-hover
   %tbody
@@ -15,16 +17,26 @@
       %th No.
       %th メンバー名
       %th
-    - @org_members.each.with_index(1) do |org_member, index|
+    - @group_members.each.with_index(1) do |group_member, index|
       %tr
+        %td= index
+        %td= group_member.user.try(:name)
         %td
-          = @group.added?(org_member) ? '★' : ''
-          = index
-        %td= org_member.user.try(:name)
+          - if @group.user_id != group_member.user_id and @group.owner?(current_user)
+            = link_to 'グループから除外', organization_group_delete_member_path(@organization, @group, user_id: group_member.user_id), method: :delete, data: { confirm: "「#{group_member.user.try(:name)}」をメンバーから除外します。よろしいですか？" }
+
+%h2 Organization Members(Not group member)
+
+%table.table.table-striped.table-hover
+  %tbody
+    %tr
+      %th No.
+      %th メンバー名
+      %th
+    - @organization_members.each.with_index(1) do |organization_member, index|
+      %tr
+        %td= index
+        %td= organization_member.user.try(:name)
         %td
-          - if @group.user_id != org_member.user_id and @group.owner?(current_user)
-            - # OPTIMIZE: 出来ればクエリを発行しない処理に変更する 2014/12/18 Shun Matsumoto
-            - if @group.added?(org_member)
-              = link_to 'グループから除外', organization_group_delete_member_path(@organization, @group, user_id: org_member.user_id), method: :delete, data: { confirm: "「#{org_member.user.try(:name)}」をメンバーから除外します。よろしいですか？" }
-            - else
-              = link_to 'グループへ追加', organization_group_add_member_path(@organization, @group, user_id: org_member.user_id), method: :post, data: { confirm: "「#{org_member.user.try(:name)}」をメンバーに追加します。よろしいですか？" }
+          - if @group.user_id != organization_member.user_id and @group.owner?(current_user)
+            = link_to 'グループへ追加', organization_group_add_member_path(@organization, @group, user_id: organization_member.user_id), method: :post, data: { confirm: "「#{organization_member.user.try(:name)}」をメンバーに追加します。よろしいですか？" }

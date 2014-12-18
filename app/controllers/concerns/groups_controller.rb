@@ -20,9 +20,10 @@ class GroupsController < ApplicationController
 
   # 編集
   def edit(organization_id, id)
-    @group       = Group.find_by(id: id)
+    @group        = Group.find_by(id: id)
     @organization = Organization.find_by(id: organization_id)
-    @org_members = Member::OrganizationMember.where(organization_id: organization_id).order(created_at: :asc)
+    @group_members        = Member::GroupMember.where(organization_id: organization_id, group_id: id).order(created_at: :asc)
+    @organization_members = Member::OrganizationMember.where(organization_id: organization_id).where.not(user_id: @group_members.pluck(:user_id)).order(created_at: :asc)
   end
 
   # 更新
