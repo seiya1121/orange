@@ -4,4 +4,5 @@
   .modal-body
     = render partial: '/schedules/form', locals: { f: f, day: @day, organization: @schedule.organization }
   .modal-footer
+    = link_to 'Delete', organization_schedule_path(@schedule.organization, @schedule), method: :delete, data: { confirm: "「#{@schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-default'
     = f.submit 'Save', data: { disable_with: 'Save' }, class: 'btn btn-primary'
