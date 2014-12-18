@@ -2,8 +2,10 @@ class Schedule < ActiveRecord::Base
   ## アソシエーション
   belongs_to :user
   belongs_to :organization
-  belongs_to :group
+  # belongs_to :group
   belongs_to :repeat_setting
+  has_many   :participations
+  has_many   :groups, through: :participations
 
   ## バリデーション
   validates :title, presence: true

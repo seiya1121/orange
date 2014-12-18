@@ -1,0 +1,19 @@
+%h2 Groups
+
+= form_for @group, url: organization_groups_path(@organization) do |f|
+  %fieldset
+    .form-group
+      %label.col-lg-2.control-label{:for => "inputEmail"} Name
+      .col-lg-10
+        = f.text_field :name, class: 'form-control'
+%br
+
+%table.table.table-striped.table-hover
+  %tbody
+    %tr
+      %th No.
+      %th グループ名
+    - @groups.each.with_index(1) do |group, index|
+      %tr
+        %td= index
+        %td= group.name

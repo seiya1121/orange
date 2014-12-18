@@ -33,6 +33,9 @@
                   - Organization.belong(current_user).each do |organization|
                     %li= link_to organization.name, organization_schedules_path(organization)
               - if @organization.try(:id).present?
+                - # グループ一覧
+                %li= link_to 'Groups', organization_groups_path(@organization)
+
                 - # 組織メンバー
                 %li= link_to 'Members', members_organization_path(@organization)
 
