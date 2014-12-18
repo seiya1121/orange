@@ -4,7 +4,7 @@ class Schedule < ActiveRecord::Base
   belongs_to :organization
   # belongs_to :group
   belongs_to :repeat_setting
-  has_many   :participations
+  has_many   :participations, dependent: :destroy
   has_many   :groups, through: :participations
 
   ## バリデーション
