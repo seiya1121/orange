@@ -8,4 +8,12 @@ class Group < ActiveRecord::Base
 
   ## バリデーション
   validates :name, presence: true
+
+  ## コールバック
+  after_create { |group| Member::GroupMember.create(organization_id: group.organization_id, group_id: group.id, user_id: group.user_id) }
+
+  # メンバー追加済みか
+  def added?(org_member)
+    Member::GroupMember.where(organization_id: org_member.organization_id, group_id: self.id, user_id: org_member.user_id).exists?
+  end
 end

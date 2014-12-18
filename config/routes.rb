@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :organizations, only: [:index, :create, :update, :edit] do
-    resources :groups, only: [:index, :create, :update, :edit]
+    resources :groups, only: [:index, :create, :update, :edit] do
+      post   'add_member'
+      delete 'delete_member'
+    end
     resources :schedules do
       get 'pager', on: :collection
     end

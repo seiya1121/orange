@@ -6,3 +6,25 @@
       %label.col-lg-2.control-label{:for => "inputEmail"} Name
       .col-lg-10
         = f.text_field :name, class: 'form-control'
+
+%h2 Organization Members
+
+%table.table.table-striped.table-hover
+  %tbody
+    %tr
+      %th No.
+      %th メンバー名
+      %th
+    - @org_members.each.with_index(1) do |org_member, index|
+      %tr
+        %td
+          = @group.added?(org_member) ? '★' : ''
+          = index
+        %td= org_member.user.try(:name)
+        %td
+          - unless @group.user_id == org_member.user_id
+            - # OPTIMIZE: 出来ればクエリを発行しない処理に変更する 2014/12/18 Shun Matsumoto
+            - if @group.added?(org_member)
+              = link_to 'グループから除外', organization_group_delete_member_path(@organization, @group, user_id: org_member.user_id), method: :delete, data: { confirm: "「#{org_member.user.try(:name)}」をメンバーから除外します。よろしいですか？" }
+            - else
+              = link_to 'グループへ追加', organization_group_add_member_path(@organization, @group, user_id: org_member.user_id), method: :post, data: { confirm: "「#{org_member.user.try(:name)}」をメンバーに追加します。よろしいですか？" }

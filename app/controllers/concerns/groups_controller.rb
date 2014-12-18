@@ -19,15 +19,32 @@ class GroupsController < ApplicationController
   end
 
   # 編集
-  def edit(id)
-    @group = Group.find_by(id: id)
+  def edit(organization_id, id)
+    @group       = Group.find_by(id: id)
+    @organization = Organization.find_by(id: organization_id)
+    @org_members = Member::OrganizationMember.where(organization_id: organization_id)
   end
 
   # 更新
-  def update(id, group)
+  def update(organization_id, id, group)
     @group = Group.find_by(id: id)
     @group.update!(group.permit!)
 
     redirect_to organization_groups_path(@group.organization_id) and return
+  end
+
+  # メンバー追加
+  def add_member(organization_id, group_id, user_id)
+    Member::GroupMember.where(organization_id: organization_id, group_id: group_id, user_id: user_id).first_or_create!
+
+    redirect_to edit_organization_group_path(organization_id, group_id) and return
+  end
+
+  # メンバー削除
+  def delete_member(organization_id, group_id, user_id)
+    member = Member::GroupMember.find_by(organization_id: organization_id, group_id: group_id, user_id: user_id)
+    member.destroy!
+
+    redirect_to edit_organization_group_path(organization_id, group_id) and return
   end
 end
