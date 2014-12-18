@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :organizations do
-    resources :groups
+    resources :groups, only: [:index, :create, :update, :edit]
     resources :schedules do
       get 'pager', on: :collection
     end

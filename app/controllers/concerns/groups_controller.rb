@@ -18,8 +18,16 @@ class GroupsController < ApplicationController
     redirect_to organization_groups_path(organization_id) and return
   end
 
-  # 更新
-  def update
+  # 編集
+  def edit(id)
+    @group = Group.find_by(id: id)
+  end
 
+  # 更新
+  def update(id, group)
+    @group = Group.find_by(id: id)
+    @group.update!(group.permit!)
+
+    redirect_to organization_groups_path(@group.organization_id) and return
   end
 end
