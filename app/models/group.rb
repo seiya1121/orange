@@ -9,6 +9,9 @@ class Group < ActiveRecord::Base
   ## バリデーション
   validates :name, presence: true
 
+  ## スコープ
+  scope :belong, -> (user, organization) { where(groups: { id: Member::GroupMember.where(organization_id: organization.id, user_id: user.id).pluck(:group_id) }) }
+
   ## コールバック
   after_create { |group| Member::GroupMember.create(organization_id: group.organization_id, group_id: group.id, user_id: group.user_id) }
 

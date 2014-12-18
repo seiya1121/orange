@@ -17,7 +17,7 @@
     = f.datetime_select :end_at, { class: 'form-control', minute_step: 5, use_month_numbers: true, date_separator: ' ', datetime_separator: '　', time_separator: ' : ', default: day }
 
 参加グループ：
-- organization.groups.order(name: :asc).each do |group|
+- organization.groups.belong(current_user, organization).order(name: :asc).each do |group|
   %li
     = check_box_tag 'group_ids[]', group.id, f.object.group_ids.index(group.id), id: "#{day.strftime("%Y_%m%d")}_#{f.object.id.to_i}_group_#{group.id}"
     = label_tag("#{day.strftime("%Y_%m%d")}_#{f.object.id.to_i}_group_#{group.id}", group.name)
