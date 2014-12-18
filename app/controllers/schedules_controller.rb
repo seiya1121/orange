@@ -56,10 +56,10 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find_by(id: id, user_id: current_user.id)
 
     if @schedule.update(schedule)
-      delete_group_ids = @schedule.group_ids - group_ids.map{|x| x.to_i }
-
       # グループ紐付け
       if group_ids.present?
+        delete_group_ids = @schedule.group_ids - group_ids.map{|x| x.to_i }
+
         group_ids.each do |group_id|
           Participation.where(schedule_id: @schedule.id, group_id: group_id, organization_id: @schedule.organization_id).first_or_create
         end
