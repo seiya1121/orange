@@ -19,4 +19,9 @@ class Group < ActiveRecord::Base
   def added?(org_member)
     Member::GroupMember.where(organization_id: org_member.organization_id, group_id: self.id, user_id: org_member.user_id).exists?
   end
+
+  # オーナーか(オーナー==作成者)
+  def owner?(user)
+    self.user_id == user.id
+  end
 end

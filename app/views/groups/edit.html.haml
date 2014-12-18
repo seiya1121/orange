@@ -22,7 +22,7 @@
           = index
         %td= org_member.user.try(:name)
         %td
-          - unless @group.user_id == org_member.user_id
+          - if @group.user_id != org_member.user_id and @group.owner?(current_user)
             - # OPTIMIZE: 出来ればクエリを発行しない処理に変更する 2014/12/18 Shun Matsumoto
             - if @group.added?(org_member)
               = link_to 'グループから除外', organization_group_delete_member_path(@organization, @group, user_id: org_member.user_id), method: :delete, data: { confirm: "「#{org_member.user.try(:name)}」をメンバーから除外します。よろしいですか？" }
