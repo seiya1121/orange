@@ -93,7 +93,7 @@ GEM
       mechanize
       rails (>= 3.0.0)
     iso8601 (0.8.2)
-    jbuilder (2.2.5)
+    jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.2)
@@ -125,7 +125,7 @@ GEM
       omniauth-twitter
       rails_config
       tapp
-    minitest (5.4.3)
+    minitest (5.5.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -220,7 +220,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    redcarpet (3.2.1)
+    redcarpet (3.2.2)
     ruby-duration (3.2.0)
       activesupport (>= 3.0.0)
       i18n
