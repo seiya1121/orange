@@ -9,6 +9,7 @@
         .col-lg-10
           = f.text_field :name, class: 'form-control'
 
+%br
 %h2 Group Members
 
 %table.table.table-striped.table-hover
@@ -25,6 +26,7 @@
           - if @group.user_id != group_member.user_id and @group.owner?(current_user)
             = link_to 'グループから除外', organization_group_delete_member_path(@organization, @group, user_id: group_member.user_id), method: :delete, data: { confirm: "「#{group_member.user.try(:name)}」をメンバーから除外します。よろしいですか？" }
 
+%br
 %h2 Organization Members(Not group member)
 
 %table.table.table-striped.table-hover
