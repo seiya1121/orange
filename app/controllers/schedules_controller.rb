@@ -70,11 +70,11 @@ class SchedulesController < ApplicationController
   end
 
   # DELETE /schedules/1
-  def destroy(id)
-    @schedule = Schedule.find_by(id: id, user_id: current_user.id)
+  def destroy(organization_id, id)
+    @schedule = Schedule.find_by(organization_id: organization_id, id: id, user_id: current_user.id)
     @schedule.destroy
 
-    redirect_to schedules_url, notice: 'Schedule was successfully destroyed.'
+    redirect_to organization_schedules_path(@schedule.organization_id, current_date: @schedule.start_at.to_date), notice: "「#{@schedule.title}」を削除しました。" and return
   end
 
   # オートページャー
